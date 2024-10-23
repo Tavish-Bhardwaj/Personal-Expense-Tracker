@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+postgres:
+image: postgres:15
+container-name: expense_tracker_postgres
+environment: 
+ POSTGRES_USER: admin
+ POSTGRES_PASSWORD: password
+ POSTGRES_DB: ExpenseTrackerdb
+ volumes:  "postgres-data:/var/lib/postgresql/data"
+ ports:  "5432:5432"
+
+ env_file:
+      - .env
+
+web:
+    build:
+      context: .
+      dockerfile: expensetracker
+    container_name: expense_tracker_web
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgresql://ExpenseTrackerdb_owner:teXZD6bP1kHh@ep-billowing-breeze-a83cg8i2.eastus2.azure.neon.tech/ExpenseTrackerdb?sslmode=require
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    command: npm run dev
+    env_file:
+      - .env
+
+volumes:
+  postgres-data:
