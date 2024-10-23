@@ -1,23 +1,22 @@
-version: '3.8'
+
 
 services:
-postgres:
-image: postgres:15
-container-name: expense_tracker_postgres
-environment: 
- POSTGRES_USER: admin
- POSTGRES_PASSWORD: password
- POSTGRES_DB: ExpenseTrackerdb
- volumes:  "postgres-data:/var/lib/postgresql/data"
- ports:  "5432:5432"
+  postgres:  # Service name should be properly indented under 'services'
+    image: postgres:15
+    container_name: expense_tracker_postgres  # Use underscores, not hyphens, for container name key
+    environment: 
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ExpenseTrackerdb
+    volumes:
+      - postgres-data:/var/lib/postgresql/data  # Correct indentation and format for volumes
+    ports:
+      - "5432:5432"  # Correct indentation and format for ports
 
- env_file:
-      - .env
-
-web:
+  web:
     build:
       context: .
-      dockerfile: expensetracker
+      dockerfile: ./expensetracker.dockerfile
     container_name: expense_tracker_web
     depends_on:
       - postgres
