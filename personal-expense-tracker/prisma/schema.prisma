@@ -43,6 +43,8 @@ model Expense {
   description String
   amount Float
   date DateTime
+  recurring Boolean @default(false) 
+  frequency String?
   userId Int
   categoryId Int
   createdAt DateTime @default(now())
