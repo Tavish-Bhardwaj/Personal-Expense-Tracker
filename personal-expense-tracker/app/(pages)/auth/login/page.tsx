@@ -12,7 +12,7 @@ const LoginPage : React.FC =()=>{
         try{
             const {email, password} = data;
             await login(email,password);
-            router.push("/dashboard");
+            router.push("/profile");
         }catch(error){
             console.error('Login failed', error);
         }

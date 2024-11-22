@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
                 { status: 400 } // Bad Request
             );
         }
+        
 
         // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);

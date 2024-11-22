@@ -11,7 +11,7 @@ const RegisterPage : React.FC = () => {
     const handleRegister = async(data:{name?: string, email: string, password: string})=>{
         try{
             await registerUser(data);
-            router.push('/dashboard');
+            router.push('/auth/login');
         }catch(error){
             console.error("Registration Failed", error);
         }

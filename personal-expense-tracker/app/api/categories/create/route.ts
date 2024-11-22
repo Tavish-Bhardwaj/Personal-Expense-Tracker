@@ -6,8 +6,8 @@ import { validateToken } from "@/app/middleware"
 const prisma = new PrismaClient();
 export async function POST(req:NextRequest){
     const tokenValidationResponse = await validateToken(req);
-    if(tokenValidationResponse.status ===401){
-        return tokenValidationResponse;
+    if(tokenValidationResponse === undefined){
+        return NextResponse.redirect("/auth/login")
 
     }
 
