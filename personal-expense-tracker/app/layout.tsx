@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import ThemeToggleButton from './components/themeToggleButton';
+import Header from "./components/Header";
 
 export const metadata: Metadata = {
   title: "Personal Expense Tracker",
@@ -26,13 +27,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ThemeProvider>
           <AuthProvider>
-            {/* Header */}
+            {/* Header
             <header className="flex justify-between items-center py-4 px-6 bg-card dark:bg-card-foreground shadow-lg border-b border-border dark:border-muted">
               <h1 className="text-2xl font-bold text-foreground dark:text-primary-foreground">
                 Personal Expense Tracker
               </h1>
               <ThemeToggleButton />
-            </header>
+            </header> */}
+
+            <Header/>
             {/* Main content */}
             <main>{children}</main>
           </AuthProvider>

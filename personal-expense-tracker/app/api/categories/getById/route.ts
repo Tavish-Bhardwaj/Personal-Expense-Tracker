@@ -6,8 +6,8 @@ const prisma = new PrismaClient();
 
 export async function GET(req:NextRequest){
     const tokenValidationResponse = await validateToken(req);
-    if(tokenValidationResponse.status === 401){
-        return tokenValidationResponse;
+    if(tokenValidationResponse === undefined){
+      return NextResponse.redirect("/auth/login")
     }
     const {searchParams} = new URL(req.url)
     const categoryId = searchParams.get('categoryId');

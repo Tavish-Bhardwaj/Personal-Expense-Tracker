@@ -1,6 +1,6 @@
 // app/expenses/page.tsx
 import ExpenseCard from "@/app/components/ExpenseCard";
-import ExpensesList from "../../components/ExpenseList";
+//import ExpensesList from "../../components/ExpenseList";
 
 const ExpensesPage = () => {
   return (
