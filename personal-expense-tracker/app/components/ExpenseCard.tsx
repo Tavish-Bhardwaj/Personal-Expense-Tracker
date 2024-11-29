@@ -1,38 +1,4 @@
-// import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-// import { Button } from "@/components/ui/button";
 
-// type ExpenseCardProps = {
-//   expense: {
-//     id: number;
-//     description: string;
-//     amount: number;
-//     date: string;
-//   };
-// };
-
-// // const ExpenseCard = ({ expense }: ExpenseCardProps) => {
-// const ExpenseCard = () => {
-//   return (
-//     <Card className="shadow-md hover:shadow-lg transition-shadow duration-300">
-//       <CardHeader>
-//         <CardTitle className="text-lg font-semibold">Miscellanious</CardTitle>
-//       </CardHeader>
-//       <CardContent className="space-y-2">
-//         <p className="text-muted text-sm">Amount: ₹1000</p>
-//         <p className="text-muted text-sm">
-//           Date: {new Date(24/2/2005).toLocaleDateString()}
-//         </p>
-//       </CardContent>
-//       <CardFooter>
-//         <Button className="w-full" variant="default">
-//           Edit
-//         </Button>
-//       </CardFooter>
-//     </Card>
-//   );
-// };
-
-// export default ExpenseCard;
 
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";

@@ -1,5 +1,6 @@
 import {NextRequest, NextResponse} from "next/server"
 import {PrismaClient} from "@prisma/client"
+import { getUserFromToken } from "@/app/utils/auth";
 import { validateToken } from "@/app/middleware"
 
 
@@ -16,26 +17,33 @@ export async function POST(req: NextRequest){
         
         try{
             
-            // taking the userId from the token middleware
-            const userIdString = req.user?.id;
-            
-            if(!userIdString){
-                return NextResponse.json({error:"User Id not found"}, {status:404});
-            }
-        // checking if the userId is number or not
-        const userId = parseInt(userIdString, 10);
-        if(isNaN(userId)){
-            return NextResponse.json({error:"Invalid User Id"}, {status:400});
-        }
+            const tokenCookie = req.cookies.get('token'); // Adjust the cookie name if necessary
+      
+    
+            if (!tokenCookie) {
+                return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+              }
+              
+        // Extract the token value
+        const token = tokenCookie.value; // Assuming tokenCookie is of type RequestCookie
+        const user = getUserFromToken(token);//util method
+        
+        if (!user) {
+            return NextResponse.json({ message: 'Invalid token' }, { status: 402 });
+          }
+          
+          const { userId, email } = user;
+          const userIdNumber = parseInt(userId, 10); // Convert userId to a number
         const expense = await prisma.expense.create({
             data:{
                 amount,
                 description,
                 date: new Date(date),
-                userId,
+                userId:userIdNumber,
                 categoryId,
             }
         })
+        console.log(expense)
         return NextResponse.json(expense, {status: 201});
     }catch(error){
         console.log(error);

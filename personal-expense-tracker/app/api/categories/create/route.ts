@@ -50,14 +50,14 @@ export async function POST(req: NextRequest) {
       
       const tokenCookie = req.cookies.get('token'); // Adjust the cookie name if necessary
       
-      // Check if the token cookie exists
+    
       if (!tokenCookie) {
           return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
         }
         
   // Extract the token value
   const token = tokenCookie.value; // Assuming tokenCookie is of type RequestCookie
-  const user = getUserFromToken(token);
+  const user = getUserFromToken(token);//util method
   
   if (!user) {
       return NextResponse.json({ message: 'Invalid token' }, { status: 402 });
