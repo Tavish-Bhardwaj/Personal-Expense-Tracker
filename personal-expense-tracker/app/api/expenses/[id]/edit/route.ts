@@ -81,7 +81,7 @@ export async function PUT(req: NextRequest) {
     
             // Check if user is null
             if (!user) {
-                return NextResponse.redirect("/auth/login");
+                return NextResponse.redirect("/auth/logicn");
             }
     
             // Now TypeScript knows user is of type { userId: string; email: string }

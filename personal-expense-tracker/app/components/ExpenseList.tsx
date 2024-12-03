@@ -470,6 +470,11 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ filter, searchQuery, selected
     fetchExpenses();
   }, []);
 
+
+  const handleDelete = (id: number) => {
+    setExpenses((prevExpenses) => prevExpenses.filter(expense => expense.id !== id));
+  };
+
   // Filter and sort expenses based on the filter, search query, and selected category
   const filteredExpenses = expenses
     .filter(expense => 
@@ -508,7 +513,7 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ filter, searchQuery, selected
       ) : (
         <div className="grid grid-cols-1 gap-4">
           {filteredExpenses.map((expense) => (
-            <ExpenseCard key={expense.id} expense={expense} /> // Pass the expense prop here
+            <ExpenseCard key={expense.id} expense={expense} onDelete={handleDelete}/> // Pass the expense prop here
           ))}
         </div>
       )}
