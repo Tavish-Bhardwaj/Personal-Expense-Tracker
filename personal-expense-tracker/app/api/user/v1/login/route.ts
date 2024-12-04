@@ -3,7 +3,9 @@ import {NextRequest, NextResponse} from "next/server";
 import bcrypt from "bcryptjs"
 import {PrismaClient} from "@prisma/client";
 import jwt from "jsonwebtoken";
-// import { RegisterRequest } from "../register/route";
+
+
+
 interface LoginRequest{
     email: string,
     password: string
