@@ -59,7 +59,7 @@ export async function GET(req: NextRequest) {
                 lte: new Date(endDate),
             };
         }
-
+//just a check commit
         try {
             const expense = await prisma.expense.findMany({
                 where: filters,
