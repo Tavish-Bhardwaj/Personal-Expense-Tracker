@@ -310,6 +310,11 @@ import { getUserFromToken } from "@/app/utils/auth";
 
 const prisma = new PrismaClient();
 
+
+// interface ExpenseByCategory {
+//     categoryId: string; // Change to number if categoryId is a number
+//     // Add other properties if needed
+// }
 export async function GET(req: NextRequest) {
     // Validate the token
     const tokenValidationResponse = await validateToken(req);

@@ -1,6 +1,14 @@
 #using the default node application
 FROM node:18-alpine
 
+# Remove node_modules if it exists
+RUN rm -rf node_modules
+
+
+
+RUN node -v
+RUN which node
+
 #setting the working directory as the root
 WORKDIR /app 
 
@@ -8,7 +16,7 @@ WORKDIR /app
 COPY package*.json ./
 
 #install all the dependecies
-RUN npm install
+RUN npm ci
 
 #copy rest of the application files
 COPY . .

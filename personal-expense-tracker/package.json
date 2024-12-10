@@ -4,26 +4,26 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
-    "@prisma/client": "^5.21.1",
+    "@prisma/client": "^6.0.1",
     "@radix-ui/react-slot": "^1.1.0",
     "@shadcn/ui": "^0.0.4",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
+    "ci": "^2.3.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.456.0",
-    "next": "^14.2.15",
+    "next": "^14.2.19",
     "node": "^18.20.5",
-    "prisma": "^5.21.1",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.2",
@@ -46,6 +46,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "postcss": "^8.4.49",
+    "prisma": "^6.0.1",
     "tailwindcss": "^3.4.14",
     "typescript": "^5"
   }
