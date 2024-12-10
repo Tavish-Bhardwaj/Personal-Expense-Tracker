@@ -143,6 +143,18 @@
   }
 }
 
+body {
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 100vw; 
+  overflow: hidden; 
+}
+
+
+
+
 @layer components {
   /* Button Styles */
   .btn {
