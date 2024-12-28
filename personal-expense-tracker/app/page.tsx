@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export default function LandingPage() {
   return (
-    <div className="page-container overflow-hidden h-screen">
+    <div className="page-container min-h-screen overflow-y-auto ">
       <div className="max-w-4xl mx-auto text-center px-6">
         {/* Heading */}
         <h1 className="text-5xl font-extrabold mb-4 mt-4">
