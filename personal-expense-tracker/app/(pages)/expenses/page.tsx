@@ -1,4 +1,5 @@
 
+
 "use client";
 import { useState, useEffect } from "react";
 import ExpenseList from "@/app/components/ExpenseList"; 
@@ -16,6 +17,7 @@ const ExpensesPage = () => {
   const [filter, setFilter] = useState("latest"); 
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null); 
+  const [expenses, setExpenses] = useState([]); // Assuming you have a state for expenses
 
   const handleAddExpense = () => {
     router.push('/expenses/addExpense'); 
@@ -54,16 +56,15 @@ const ExpensesPage = () => {
   }, []);
 
   return (
-    <div className="page-container">
-      <div className="max-w-4xl w-full">
-        <div className="flex justify-between items-center mb-4">
-          {/* <h1 className="heading">Your Expenses</h ```tsx */}
-          <h1 className="heading">Your Expenses</h1>
-          <div className="flex items-center">
+    <div className="mt-12 flex justify-center"> {/* Center the content */}
+      <div className="max-w-4xl w-full px-4"> {/* Added padding for better spacing */}
+        <div className="flex flex-col md:flex-row justify-between items-center mb-4">
+          <h1 className="heading text-center md:text-left">Your Expenses</h1>
+          <div className="flex items-center mt-4 md:mt-0">
             <select
               value={filter}
               onChange={handleFilterChange}
-              className="mr-4 p-2 border rounded"
+              className="mr-4 p-2 border rounded dark:bg-gray-800 text-black" // Added dark mode styles
             >
               <option value="latest">Latest</option>
               <option value="oldest">Oldest</option>
@@ -75,7 +76,7 @@ const ExpensesPage = () => {
               <select
                 value={selectedCategory ? selectedCategory.id : ""}
                 onChange={handleCategoryChange}
-                className="mr-4 p-2 border rounded"
+                className="mr-4 p-2 border rounded dark:bg-gray-800 text-black" // Added dark mode styles
               >
                 <option value="">Select Category</option>
                 {categories.length > 0 ? (

@@ -1,4 +1,6 @@
 
+
+
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
@@ -6,6 +8,7 @@ import { Eye, EyeOff } from "lucide-react";
 type AuthFormProps = {
   isLogin: boolean;
   onSubmit: (data: AuthInputs) => Promise<void>;
+  errorMessage?: string | null; // Add errorMessage prop
 };
 
 type AuthInputs = {
@@ -14,7 +17,7 @@ type AuthInputs = {
   password: string;
 };
 
-export const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSubmit }) => {
+export const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSubmit, errorMessage }) => {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<AuthInputs>();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -96,7 +99,10 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSubmit }) => {
           {errors.password && <p className="text-destructive text-sm mt-1">{errors.password.message}</p>}
         </div>
 
-        {/* Submit Button */}
+        {/* Display error message from backend */}
+        {errorMessage && <p className="text-destructive text-sm mt-1">{errorMessage}</p>}
+
+ {/* Submit Button */}
         <button
           type="submit"
           className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-lg mt-6 shadow hover:bg-primary-foreground hover:text-primary transition disabled:opacity-50"

@@ -3,6 +3,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter, usePathname } from "next/navigation";
 import axios from 'axios';
 
 interface Category {
@@ -18,9 +19,11 @@ interface FormData {
 }
 
 const AddExpenseForm = () => {
+  const router = useRouter();
   const [categories, setCategories] = useState<Category[]>([]);
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
 
+  
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -36,6 +39,7 @@ const AddExpenseForm = () => {
   }, []);
 
   const onSubmit = async (data: FormData) => {
+    
     try {
       const floatAmount = parseFloat(data.amount.toString());
       const categoryId = parseInt(data.categoryId.toString(), 10);
@@ -46,6 +50,7 @@ const AddExpenseForm = () => {
       });
       if (response.status === 201) {
         alert('Expense added successfully!');
+        router.push('/expenses')
         reset(); // Reset the form fields
       }
     } catch (error) {

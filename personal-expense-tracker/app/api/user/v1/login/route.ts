@@ -44,7 +44,7 @@ export  async function POST(req: NextRequest){
                 const isPasswordValid = await bcrypt.compare(password, user.password);
                 if(!isPasswordValid){
                     return NextResponse.json({message: "Invalid Password"},
-                        {status:401}
+                        {status:40}
                     )
                 }
                 else{

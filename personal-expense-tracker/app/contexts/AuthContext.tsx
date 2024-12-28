@@ -11,19 +11,24 @@ type User = {
 };
 
 type AuthContextType = {
+  errorMessage: string |null;
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   registerUser: (data: { name?: string; email: string; password: string }) => Promise<void>;
+  
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const login = async(email: string, password: string) =>{
     try{
+      setErrorMessage(null);
+      
       const response = await axios.post('/api/user/v1/login', {email, password});
       const userData:User = response.data; 
       setUser(userData);
@@ -45,7 +50,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, registerUser }}>
+    <AuthContext.Provider value={{ user, login, logout, registerUser, errorMessage }}>
       {children}
     </AuthContext.Provider>
   );

@@ -27,16 +27,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ThemeProvider>
           <AuthProvider>
-            {/* Header
-            <header className="flex justify-between items-center py-4 px-6 bg-card dark:bg-card-foreground shadow-lg border-b border-border dark:border-muted">
-              <h1 className="text-2xl font-bold text-foreground dark:text-primary-foreground">
-                Personal Expense Tracker
-              </h1>
-              <ThemeToggleButton />
-            </header> */}
-
+            
             <Header/>
-            {/* Main content */}
             <main>{children}</main>
           </AuthProvider>
         </ThemeProvider>

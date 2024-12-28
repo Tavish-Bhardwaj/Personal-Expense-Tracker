@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
 import ExpenseCard from './ExpenseCard'; // Adjust the import path as necessary
+import { useRouter } from 'next/navigation';
+import { Button } from "@/components/ui/button"; 
+
 
 interface Expense {
   id: number; // or number, depending on your data structure
@@ -26,6 +29,7 @@ interface ExpenseListProps {
 }
 
 const ExpenseList: React.FC<ExpenseListProps> = ({ filter, searchQuery, selectedCategory }) => {
+  const router = useRouter();
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -46,6 +50,10 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ filter, searchQuery, selected
     fetchExpenses();
   }, []);
 
+
+  const handleAddExpense = () => {
+    router.push('/expenses/addExpense'); 
+  };
 
   const handleDelete = (id: number) => {
     setExpenses((prevExpenses) => prevExpenses.filter(expense => expense.id !== id));
@@ -85,7 +93,15 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ filter, searchQuery, selected
           visible={true}
         />
       ) : filteredExpenses.length === 0 ? (
-        <div>No expenses found</div>
+        <div className="flex flex-col items-center">
+            <p className="text-gray-600">Add new Expense</p>
+            <Button 
+              onClick={handleAddExpense} 
+              className="mt-2 bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800"
+            >
+              Add Expense
+            </Button>
+          </div>
       ) : (
         <div className="grid grid-cols-1 gap-4">
           {filteredExpenses.map((expense) => (
