@@ -6,7 +6,7 @@ import MonthlyTotalExpenses from "../../components/MonthlyTotalExpenses";
 import SpendingTrends from "../../components/SpendingTrends";
 import axios from "axios";
 import { AnalyticsData, Category } from "../../types/types";
-import { FaChartLine, FaCalendarAlt, FaDollarSign, FaTags } from "react-icons/fa";
+import { FaChartLine, FaCalendarAlt, FaRupeeSign, FaTags } from "react-icons/fa";
 
 const Dashboard: React.FC = () => {
     const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null);
@@ -103,7 +103,7 @@ const Dashboard: React.FC = () => {
                     <TotalStat
                         title="Total Monthly Spending"
                         value={`₹${getTotalMonthlySpending()}`}
-                        icon={<FaDollarSign size={24} className="text-green-500" />}
+                        icon={<FaRupeeSign size={24} className="text-green-500" />}
                     />
                     <TotalStat
                         title="Top Spending Category"
